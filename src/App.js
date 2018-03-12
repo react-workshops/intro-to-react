@@ -31,7 +31,6 @@ const getStateFromLocation = location => {
 class IntroToReact extends React.Component {
   state = getStateFromLocation(history.location);
 
-  static title = "1: Intro to JS and React";
   componentDidMount() {
     this._unlistenHistory = history.listen((location, action) => {
       this.setState(getStateFromLocation(location));
@@ -57,18 +56,20 @@ class IntroToReact extends React.Component {
       );
     }
     return (
-      <ScrollScreen title={"Welcome"}>
-        {Chapters.map((chapter, chapterIndex) => (
-          <Card
-            key={chapter.routeName}
-            onPress={() => {
-              onSetChapter(chapter.routeName);
-            }}
-          >
-            <Title>{chapter.chapterOptions.title}</Title>
-            <Paragraph>{chapter.chapterOptions.subtitle}</Paragraph>
-          </Card>
-        ))}
+      <ScrollScreen title={"Welcome to ReactWork.shop"}>
+        <Card>
+          {Chapters.map((chapter, chapterIndex) => (
+            <Card
+              key={chapter.routeName}
+              onPress={() => {
+                onSetChapter(chapter.routeName);
+              }}
+            >
+              <Title>{chapter.chapterOptions.title}</Title>
+              <Paragraph>{chapter.chapterOptions.subtitle}</Paragraph>
+            </Card>
+          ))}
+        </Card>
       </ScrollScreen>
     );
   }

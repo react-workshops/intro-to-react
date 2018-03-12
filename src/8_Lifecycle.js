@@ -56,6 +56,47 @@ class HelloMessage extends React.Component {
             `}
           />
         </Card>
+        <Card>
+          <Title>Use keys to control mounting</Title>
+          <Paragraph>
+            The parent can provide a key to identify each component. When the
+            key changes, the identity is different and the component is
+            re-mounted.
+          </Paragraph>
+          <Code
+            code={`
+class App extends React.Component {
+  render() {
+    return <HelloMessage key="a" />
+  }
+}
+            `}
+          />
+          <Paragraph>
+            Keys are also used to tell React how components in an array are
+            ordered:
+          </Paragraph>
+          <Code
+            code={`
+const App = ({}) => (
+  <List>
+    {['Jamie', 'Lucy'].map(name =>
+      <ListItem key={name} name={name} />
+    )}
+  </List>
+);
+            `}
+          />
+          <Paragraph>
+            If you re-render with the list items in a different order, the key
+            is used to tell React which items have been added, removed, or
+            re-arranged.
+          </Paragraph>
+        </Card>
+        <Card>
+          <Title>Update State in Response to Prop changes</Title>
+          <Paragraph>asdf</Paragraph>
+        </Card>
       </ScrollScreen>
     );
   }

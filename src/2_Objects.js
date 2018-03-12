@@ -106,6 +106,14 @@ console.log(name);`}
 `}
           />
         </Card>
+        <Card>
+          <Title>Rest Syntax</Title>
+          <Paragraph>Arrays can also utilize the rest syntax:</Paragraph>
+          <Code
+            code={`const names = ['Jamie', 'Alex'];
+const girlsNames = ['Lucy', ...names];`}
+          />
+        </Card>
       </ScrollScreen>
     );
   }

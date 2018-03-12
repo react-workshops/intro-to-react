@@ -4,6 +4,7 @@ import Card from "./components/Card";
 import Title from "./components/Title";
 import Paragraph from "./components/Paragraph";
 import ScrollScreen from "./components/ScrollScreen";
+import BigLink from "./components/BigLink";
 
 export default class StyleChapter extends React.Component {
   static routeName = "StyleChapter";
@@ -46,22 +47,6 @@ const BlueText = (props) => (
 );
             `}
           />
-          <Paragraph>
-            But in practice, when your styles do not change, you should use a
-            StyleSheet:
-          </Paragraph>
-          <Code
-            code={`
-const styles = StyleSheet.create({
-  text: { color: 'blue' }
-})
-const BlueText = (props) => (
-  <Text style={styles.text}>
-    {props.children}
-  </Text>
-);
-            `}
-          />
         </Card>
         <Card>
           <Title>Flexbox</Title>
@@ -76,18 +61,26 @@ const BlueText = (props) => (
             There are different sets of styles supported on each of View, Text,
             and Image. See React Native's documentation for an exhaustive list
             of stylesheet properties:
-            <a href="http://facebook.github.io/react-native/docs/layout-props.html">
-              Universal Layout Props
-            </a>
-            <a href="http://facebook.github.io/react-native/docs/view-style-props.html">
-              View Style Props
-            </a>
-            <a href="http://facebook.github.io/react-native/docs/text-style-props.html">
-              Text Style Props
-            </a>
-            <a href="http://facebook.github.io/react-native/docs/image-style-props.html">
-              Image Style Props
-            </a>
+          </Paragraph>
+          <BigLink to="http://facebook.github.io/react-native/docs/layout-props.html">
+            Universal Layout Props
+          </BigLink>
+          <BigLink to="http://facebook.github.io/react-native/docs/view-style-props.html">
+            View Style Props
+          </BigLink>
+          <BigLink to="http://facebook.github.io/react-native/docs/text-style-props.html">
+            Text Style Props
+          </BigLink>
+          <BigLink to="http://facebook.github.io/react-native/docs/image-style-props.html">
+            Image Style Props
+          </BigLink>
+        </Card>
+        <Card>
+          <Title>Animations</Title>
+          <Paragraph>
+            React Native has a powerful animation library called "Animated", in
+            addition to a handy yet simple "LayoutAnimation" utility, which
+            automatically performs animations for you.
           </Paragraph>
         </Card>
       </ScrollScreen>

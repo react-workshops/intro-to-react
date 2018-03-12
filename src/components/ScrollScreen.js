@@ -122,7 +122,7 @@ export default class ScrollScreen extends React.Component {
                   marginHorizontal: 10
                 }}
               >
-                Intro to ReactJS Workshop
+                Intro to JS and React
               </Text>
               <svg
                 version="1.1"

@@ -4,6 +4,7 @@ import Card from "./components/Card";
 import Title from "./components/Title";
 import Paragraph from "./components/Paragraph";
 import ScrollScreen from "./components/ScrollScreen";
+import BigLink from "./components/BigLink";
 
 export default class Functions extends React.Component {
   static routeName = "Functions";
@@ -58,6 +59,8 @@ const getName = (function(person) {
 }).bind(this);
             `}
           />
+          <Paragraph>Learn more about arrow functions here:</Paragraph>
+          <BigLink to="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions" />
         </Card>
 
         <Card>

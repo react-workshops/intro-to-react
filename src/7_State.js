@@ -90,6 +90,38 @@ export default class State extends React.Component {
             `}
           />
         </Card>
+        <Card>
+          <Title>Controlled Components</Title>
+          <Paragraph>
+            A component is controlled if it gets its state through props, and
+            requests to be changed via an event. Text inputs are a great example
+            of this:
+          </Paragraph>
+          <Code
+            code={`class Form extends React.Component {
+  state = { name: "" };
+  render() {
+    return (
+      <View>
+        <Text>What is your name?</Text>
+        <TextInput
+          value={this.state.name}
+          onChangeText={this._onNameChange}
+        />
+      </View>
+    );
+  }
+  _onNameChange = text => {
+    this.setState({ name: text });
+  }
+}
+            `}
+          />
+          <Paragraph>
+            This is an extremely common pattern in apps, because it allows the
+            parent to monitor and control the behavior of the component.
+          </Paragraph>
+        </Card>
       </ScrollScreen>
     );
   }

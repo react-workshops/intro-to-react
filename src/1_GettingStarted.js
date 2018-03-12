@@ -27,8 +27,7 @@ export default class GettingStarted extends React.Component {
             On a mac, you can use brew to quickly install both:
           </Paragraph>
           <Code
-            code={`
-brew install nodejs
+            code={`brew install nodejs
 brew install yarn
 `}
           />
@@ -39,8 +38,7 @@ brew install yarn
           <Paragraph>Check out this repository from github:</Paragraph>
           <BigLink to="https://github.com/react-workshops/intro-to-react" />
           <Code
-            code={`git clone git@github.com:react-workshops/intro-to-react.git
-`}
+            code={`git clone git@github.com:react-workshops/intro-to-react.git`}
           />
         </Card>
         <Card>
