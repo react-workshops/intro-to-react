@@ -76,14 +76,17 @@ const BlueText = (props) => (
             There are different sets of styles supported on each of View, Text,
             and Image. See React Native's documentation for an exhaustive list
             of stylesheet properties:
+            <a href="http://facebook.github.io/react-native/docs/layout-props.html">
+              Universal Layout Props
+            </a>
             <a href="http://facebook.github.io/react-native/docs/view-style-props.html">
-              View Styles
+              View Style Props
             </a>
             <a href="http://facebook.github.io/react-native/docs/text-style-props.html">
-              Text Styles
+              Text Style Props
             </a>
             <a href="http://facebook.github.io/react-native/docs/image-style-props.html">
-              Image Styles
+              Image Style Props
             </a>
           </Paragraph>
         </Card>
