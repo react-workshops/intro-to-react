@@ -1,0 +1,21 @@
+{
+  "name": "workshop-web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "history": "^4.7.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-fontawesome": "^1.6.1",
+    "react-native-web": "^0.5.2",
+    "react-scripts": "1.1.1",
+    "react-syntax-highlighter": "^7.0.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
