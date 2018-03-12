@@ -16,7 +16,7 @@ export default class GettingStarted extends React.Component {
   render() {
     const { navigation } = this.props;
     return (
-      <ScrollScreen title="Style in React Native" navigation={navigation}>
+      <ScrollScreen title="Getting Started" navigation={navigation}>
         <Card>
           <Title>Get Dependencies</Title>
           <Paragraph>Install NodeJS and Yarn.</Paragraph>
