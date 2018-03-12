@@ -43,6 +43,7 @@ class IntroToReact extends React.Component {
   render() {
     const { openChapterIndex } = this.state;
     const onSetChapter = chapterName => {
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
       if (chapterName === null) {
         history.push("/");
       } else {
