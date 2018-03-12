@@ -57,6 +57,15 @@ class HelloMessage extends React.Component {
           />
         </Card>
         <Card>
+          <Title>Intro to Lifecycle</Title>
+          <Paragraph>
+            React offers various hooks for your component, that correspond to
+            different points in a components life. Learn in detail on the
+            ReactJS site:
+          </Paragraph>
+          <BigLink to="https://reactjs.org/docs/react-component.html" />
+        </Card>
+        <Card>
           <Title>Use keys to control mounting</Title>
           <Paragraph>
             The parent can provide a key to identify each component. When the
@@ -95,7 +104,29 @@ const App = ({}) => (
         </Card>
         <Card>
           <Title>Update State in Response to Prop changes</Title>
-          <Paragraph>asdf</Paragraph>
+          <Paragraph>
+            You will often want your state to update when your props change. You
+            can utilize the "componentWillReceiveProps" hook for that, and call
+            setState from there.
+          </Paragraph>
+          <Code
+            code={`
+class NameWithUpdateHighlight extends React.Component {
+  state = { highlightNameChange: false };
+  render() {
+    if (this.state.highlightNameChange) {
+      ...
+    }
+    return <Text>{this.props.name}</Text>
+  }
+  componentWillReceiveProps(nextProps) {
+    if (this.state.props.name) {
+      this.setState({ highlightNameChange: true });
+    }
+  }
+}
+            `}
+          />
         </Card>
       </ScrollScreen>
     );
