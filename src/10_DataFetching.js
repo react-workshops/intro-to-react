@@ -11,7 +11,13 @@ const fetchImages = async () => {
       "https://dog.ceo/api/breed/retriever/golden/images"
     );
     let responseJson = await response.json();
-    return responseJson.message;
+
+    const data = responseJson.message.map((imageUrl, index) => ({
+      id: imageUrl,
+      imageUrl,
+      isLiked: false
+    }));
+    return data;
   } catch (e) {
     console.error(e);
   }

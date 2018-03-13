@@ -5,7 +5,104 @@ import Title from "./components/Title";
 import Paragraph from "./components/Paragraph";
 import ScrollScreen from "./components/ScrollScreen";
 
-import { Image } from "react-native";
+import { Image, View, Text, Button } from "react-native";
+
+const initialState = 0;
+
+const counterReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "INCREMENT":
+      return state + 1;
+    case "DECREMENT":
+      return state - 1;
+    case "ADD":
+      return state + action.value;
+    default:
+      return state;
+  }
+};
+
+const incrementAction = { type: "INCREMENT" };
+const decrementAction = { type: "DECREMENT" };
+const unknownAction = { type: "UNKNOWN" };
+
+// console.log(counterReducer(undefined, {}));
+
+const createStore = (reducer, initialState) => {
+  let state = initialState;
+  const listeners = [];
+
+  const subscribe = listener => listeners.push(listener);
+  const getState = () => state;
+  const dispatch = action => {
+    state = reducer(state, action);
+    listeners.forEach(listener => listener());
+  };
+
+  return {
+    subscribe,
+    getState,
+    dispatch
+  };
+};
+
+const addSomething = value => ({ type: "ADD", value });
+
+const store = createStore(counterReducer, undefined);
+store.dispatch({ type: "UNKNOWN" });
+
+class Counter extends React.Component {
+  state = { counter: store.getState() };
+
+  componentDidMount() {
+    store.subscribe(() => this.setState({ counter: store.getState() }));
+    store.dispatch({ type: "UNKNOWN" });
+  }
+
+  handleButtonPress = () => {
+    store.dispatch(decrementAction);
+  };
+
+  render() {
+    return (
+      <View>
+        <Text>{this.state.counter}</Text>
+        <Button onPress={this.handleButtonPress} title="decrement" />
+      </View>
+    );
+  }
+}
+
+const connect = (Component, getStateFromStore) => {
+  class SubscribedComponent extends React.Component {
+    state = { storeState: getStateFromStore(store.getState()) };
+
+    componentDidMount() {
+      store.subscribe(() =>
+        this.setState({ storeState: getStateFromStore(store.getState()) })
+      );
+    }
+
+    render() {
+      return <Component {...this.state.storeState} />;
+    }
+  }
+
+  return SubscribedComponent;
+};
+
+class AnotherCounterWithCount extends React.PureComponent {
+  render() {
+    return (
+      <View>
+        <Text>{String(this.props.isOdd)}</Text>
+      </View>
+    );
+  }
+}
+const AnotherCounter = connect(AnotherCounterWithCount, storeState => ({
+  isOdd: !!(storeState % 2)
+}));
 
 export default class DataManagement extends React.Component {
   static routeName = "DataManagement";
@@ -257,6 +354,12 @@ class Counter extends React.Component {
 };
             `}
           />
+        </Card>
+
+        <Card>
+          <Counter />
+
+          <AnotherCounter />
         </Card>
       </ScrollScreen>
     );
