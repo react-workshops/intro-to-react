@@ -83,4 +83,6 @@ class IntroToReact extends React.Component {
   }
 }
 
-export default IntroToReact;
+export default require("./examples/Callstagram/App").default;
+
+// export default IntroToReact;
