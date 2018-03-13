@@ -17,7 +17,10 @@ const Chapters = [
   require("./6_Classes").default,
   require("./7_State").default,
   require("./8_Lifecycle").default,
-  require("./9_JSEcosystem").default
+  require("./9_JSEcosystem").default,
+  require("./10_DataFetching").default,
+  require("./11_Callstagram").default,
+  require("./12_DataManagement").default
 ];
 
 const getStateFromLocation = location => {

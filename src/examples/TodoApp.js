@@ -32,7 +32,7 @@ class InputTodo extends React.Component {
 
 class TodoItem extends React.PureComponent {
   render() {
-    const { todo, onToggle } = this.props;
+    const { todo } = this.props;
     return (
       <View>
         <Switch value={todo.isDone} onChange={this._onDoneSwitch} />

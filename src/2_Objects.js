@@ -13,7 +13,6 @@ export default class Objects extends React.Component {
     subtitle: "Primitives, let/const, Destructuring, Rest syntax"
   };
   render() {
-    const codeString = "(num) => num + 1";
     const { navigation } = this.props;
     return (
       <ScrollScreen title="JS Objects" navigation={navigation}>

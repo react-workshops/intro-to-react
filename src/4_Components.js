@@ -1,8 +1,4 @@
 import React from "react";
-import Code from "./components/Code";
-import Card from "./components/Card";
-import Title from "./components/Title";
-import Paragraph from "./components/Paragraph";
 import ScrollScreen from "./components/ScrollScreen";
 
 import { Text } from "react-native";

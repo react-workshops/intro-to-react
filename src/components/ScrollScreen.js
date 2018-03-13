@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import "font-awesome/css/font-awesome.css";
 import SiteWidth from "./SiteWidth";
 const FontAwesome = require("react-fontawesome");
@@ -132,7 +132,7 @@ export default class ScrollScreen extends React.Component {
               >
                 <g transform="translate(92 83)">
                   <circle fill="#444" r="16" />
-                  <g fill="none" stroke="#444" stroke-width="5">
+                  <g fill="none" stroke="#444" strokeWidth="5">
                     <ellipse rx="84" ry="32" />
                     <ellipse rx="84" ry="32" transform="rotate(120)" />
                     <ellipse rx="84" ry="32" transform="rotate(60)" />

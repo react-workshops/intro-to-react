@@ -1,12 +1,11 @@
 import React from "react";
-import Code from "./components/Code";
 import Card from "./components/Card";
 import Title from "./components/Title";
 import Paragraph from "./components/Paragraph";
 import ScrollScreen from "./components/ScrollScreen";
 import BigLink from "./components/BigLink";
 
-export default class Ecosystem extends React.Component<Props> {
+export default class Ecosystem extends React.Component {
   static routeName = "JSEcosystem";
 
   static chapterOptions = {
