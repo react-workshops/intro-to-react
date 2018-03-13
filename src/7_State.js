@@ -28,8 +28,8 @@ export default class State extends React.Component {
   render() {
     return (
       <Button
-        onClick={this._increment}
-        label={\`Pressed \${this.state.count} times\`}
+        onPress={this._increment}
+        title={\`Pressed \${this.state.count} times\`}
       />
     )
   }
@@ -60,8 +60,8 @@ export default class State extends React.Component {
   render() {
     return (
       <Button
-        onClick={this._increment}
-        label={\`Pressed \${this.state.count} times\`}
+        onPress={this._increment}
+        title={\`Pressed \${this.state.count} times\`}
       />
     )
   }
