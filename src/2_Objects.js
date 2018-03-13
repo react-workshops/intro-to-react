@@ -25,8 +25,10 @@ export default class Objects extends React.Component {
           <Paragraph>
             Strings have a new multiline and template syntax:
           </Paragraph>
-          <Code code={`const person = { name: 'Anna' };`} />
-          <Code code={`const person = { name: 'Anna' };`} />
+          <Code
+            code={`const person = "Anna";
+const personMessage = \`Hello, \${person}\`;`}
+          />
         </Card>
         <Card>
           <Title>let and const</Title>
@@ -73,6 +75,7 @@ if (age < 13) {
             code={`const person = {};
 person.name = 'Anna';`}
           />
+          <Paragraph>Property assignment shorthand:</Paragraph>
           <Code
             code={`const name = 'Anna';
 const person = { name };`}

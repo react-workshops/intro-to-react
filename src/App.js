@@ -3,6 +3,7 @@ import Card from "./components/Card";
 import Title from "./components/Title";
 import Paragraph from "./components/Paragraph";
 import ScrollScreen from "./components/ScrollScreen";
+import TodoApp from "./examples/TodoApp";
 
 import createHistory from "history/createBrowserHistory";
 const history = createHistory();
@@ -69,6 +70,10 @@ class IntroToReact extends React.Component {
               <Paragraph>{chapter.chapterOptions.subtitle}</Paragraph>
             </Card>
           ))}
+        </Card>
+        <Card>
+          <Title>Todo App Example:</Title>
+          <TodoApp />
         </Card>
       </ScrollScreen>
     );

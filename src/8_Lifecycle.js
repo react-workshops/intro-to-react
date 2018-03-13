@@ -121,7 +121,7 @@ class NameWithUpdateHighlight extends React.Component {
     return <Text>{this.props.name}</Text>
   }
   componentWillReceiveProps(nextProps) {
-    if (this.state.props.name) {
+    if (nextProps.name !== this.props.name) {
       this.setState({ highlightNameChange: true });
     }
   }
