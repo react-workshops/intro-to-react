@@ -20,7 +20,9 @@ const Chapters = [
   require("./9_JSEcosystem").default,
   require("./10_DataFetching").default,
   require("./11_Callstagram").default,
-  require("./12_DataManagement").default
+  require("./12_DataManagement").default,
+  require("./chapters/ReactNavIntro").default,
+  require("./chapters/ReactNavNesting").default
 ];
 
 const getStateFromLocation = location => {
@@ -83,6 +85,6 @@ class IntroToReact extends React.Component {
   }
 }
 
-export default require("./examples/Callstagram/App").default;
+// export default require("./examples/Callstagram/App").default;
 
-// export default IntroToReact;
+export default IntroToReact;
