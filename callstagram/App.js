@@ -7,6 +7,43 @@ import { Provider } from "react-redux";
 
 import store from "./store";
 
+import { StackNavigator } from "react-navigation";
+
+import PhotoScreen from "./PhotoScreen";
+
+class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: "Callstagram"
+  };
+  render() {
+    return (
+      <View
+        style={styles.container}
+        onLayout={e => {
+          store.dispatch({
+            type: "LAYOUT",
+            layout: e.nativeEvent.layout
+          });
+        }}
+      >
+        <Feed
+          navigation={this.props.navigation}
+          renderLikeButton={(title, onPress) => (
+            <TouchableOpacity onPress={onPress}>
+              <Text>{title}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+    );
+  }
+}
+
+const AppNavigator = StackNavigator({
+  Home: HomeScreen,
+  Photo: PhotoScreen
+});
+
 export default class App extends React.Component {
   componentDidMount() {
     fetchImages(store);
@@ -14,27 +51,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <View
-          style={styles.container}
-          onLayout={e => {
-            store.dispatch({
-              type: "LAYOUT",
-              layout: e.nativeEvent.layout
-            });
-          }}
-        >
-          <View style={styles.topBar}>
-            <Image source={require("./callstack.png")} style={styles.logo} />
-            <Text style={styles.title}>Callstagram</Text>
-          </View>
-          <Feed
-            renderLikeButton={(title, onPress) => (
-              <TouchableOpacity onPress={onPress}>
-                <Text>{title}</Text>
-              </TouchableOpacity>
-            )}
-          />
-        </View>
+        <AppNavigator />
       </Provider>
     );
   }
@@ -43,7 +60,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   title: { fontSize: 48 },
   container: {
-    paddingTop: 20,
     backgroundColor: "#fafafa",
     flex: 1
   },

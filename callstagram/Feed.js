@@ -22,6 +22,7 @@ class FeedWithItems extends React.PureComponent {
             <FeedItem
               id={item.key}
               key={item.key}
+              navigation={this.props.navigation}
               renderLikeButton={renderLikeButton}
             />
           );

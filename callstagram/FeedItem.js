@@ -1,19 +1,24 @@
 import React from "react";
-import { View, Image } from "react-native";
+import { View, Image, TouchableWithoutFeedback } from "react-native";
 
 import { connect } from "react-redux";
 
 import FeedItemLikeButton from "./FeedItemLikeButton";
 
-const FeedItemFull = ({ id, image, layout, renderLikeButton }) => {
-  console.log("Rendering item! ", layout);
+const FeedItemFull = ({ id, image, layout, renderLikeButton, navigation }) => {
   return (
     id && (
       <View style={{}}>
-        <Image
-          style={{ width: layout.width / 2, aspectRatio: 1 }}
-          source={{ uri: image }}
-        />
+        <TouchableWithoutFeedback
+          onPress={() => {
+            navigation.navigate("Photo", { id });
+          }}
+        >
+          <Image
+            style={{ width: layout.width / 2, aspectRatio: 1 }}
+            source={{ uri: image }}
+          />
+        </TouchableWithoutFeedback>
         <FeedItemLikeButton id={id} renderButton={renderLikeButton} />
       </View>
     )
