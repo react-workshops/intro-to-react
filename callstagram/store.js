@@ -34,7 +34,7 @@ const rootReducer = (lastState = initialState, action) => {
     if (hasLiked) {
       return {
         ...lastState,
-        likedItems: lastState.likedItems.filter(i => i.id === action.id)
+        likedItems: lastState.likedItems.filter(i => i !== action.id)
       };
     } else {
       return {

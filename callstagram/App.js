@@ -1,5 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  Button
+} from "react-native";
 import Feed from "./Feed";
 import fetchImages from "./fetchImages";
 
@@ -7,7 +15,8 @@ import { Provider } from "react-redux";
 
 import store from "./store";
 
-import { StackNavigator } from "react-navigation";
+import { StackNavigator, TabNavigator } from "react-navigation";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 import PhotoScreen from "./PhotoScreen";
 
@@ -39,9 +48,81 @@ class HomeScreen extends React.Component {
   }
 }
 
-const AppNavigator = StackNavigator({
+class LikedScreen extends React.Component {
+  static navigationOptions = {
+    title: "Liked"
+  };
+  render() {
+    return (
+      <View
+        style={styles.container}
+        onLayout={e => {
+          store.dispatch({
+            type: "LAYOUT",
+            layout: e.nativeEvent.layout
+          });
+        }}
+      >
+        <Feed
+          getItemsFromStore={store => {
+            return store.likedItems.map(likedItemKey => {
+              console.log("getting an item from the store", likedItemKey);
+              return store.items.find(i => i.key === likedItemKey);
+            });
+          }}
+          navigation={this.props.navigation}
+          renderLikeButton={(title, onPress) => (
+            <TouchableOpacity onPress={onPress}>
+              <Text>{title}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+    );
+  }
+}
+
+const MainNavigator = StackNavigator({
   Home: HomeScreen,
   Photo: PhotoScreen
+});
+MainNavigator.navigationOptions = {
+  tabBarLabel: "Home",
+  tabBarIcon: ({ focused, tintColor }) => {
+    const iconName = `ios-home${focused ? "" : "-outline"}`;
+    return <Ionicons name={iconName} size={25} color={tintColor} />;
+  }
+};
+
+const LikedNavigator = StackNavigator({
+  Liked: LikedScreen,
+  Photo: PhotoScreen
+});
+LikedNavigator.navigationOptions = {
+  tabBarLabel: "Liked",
+  tabBarIcon: ({ focused, tintColor }) => {
+    const iconName = `ios-heart${focused ? "" : "-outline"}`;
+    return <Ionicons name={iconName} size={25} color={tintColor} />;
+  }
+};
+
+const SettingsScreen = ({}) => (
+  <ScrollView>
+    <Button title="Hello" onPress={() => {}} />
+  </ScrollView>
+);
+SettingsScreen.navigationOptions = {
+  tabBarLabel: "Settings",
+  tabBarIcon: ({ focused, tintColor }) => {
+    const iconName = `ios-options${focused ? "" : "-outline"}`;
+    return <Ionicons name={iconName} size={25} color={tintColor} />;
+  }
+};
+
+const AppNavigator = TabNavigator({
+  Main: MainNavigator,
+  Liked: LikedNavigator,
+  Settings: SettingsScreen
 });
 
 export default class App extends React.Component {

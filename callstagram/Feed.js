@@ -32,9 +32,11 @@ class FeedWithItems extends React.PureComponent {
   }
 }
 
-const Feed = connect(store => {
+const Feed = connect((store, props) => {
   return {
-    items: store.items
+    items: props.getItemsFromStore
+      ? props.getItemsFromStore(store)
+      : store.items
   };
 })(FeedWithItems);
 
