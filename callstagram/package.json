@@ -23,6 +23,7 @@
     "react": "16.2.0",
     "react-native": "0.52.0",
     "react-redux": "^5.0.7",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-persist": "^5.9.1"
   }
 }

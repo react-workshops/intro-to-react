@@ -3,19 +3,37 @@ import FeedItem from "./FeedItem";
 
 import { connect } from "react-redux";
 
-import { ScrollView } from "react-native";
+import { ScrollView, FlatList, Dimensions } from "react-native";
 
-const FeedWithItems = props => {
-  return (
-    <ScrollView>
-      {props.itemIDs.map(id => <FeedItem id={id} key={id} />)}
-    </ScrollView>
-  );
-};
+// const { width, height } = Dimensions.get("window");
+
+class FeedWithItems extends React.PureComponent {
+  render() {
+    const { items, renderLikeButton } = this.props;
+    console.log("Expensive render!!", items.length);
+    return (
+      <FlatList
+        initialNumToRender={3}
+        numColumns={2}
+        style={{ flex: 1 }}
+        data={items}
+        renderItem={({ item }) => {
+          return (
+            <FeedItem
+              id={item.key}
+              key={item.key}
+              renderLikeButton={renderLikeButton}
+            />
+          );
+        }}
+      />
+    );
+  }
+}
 
 const Feed = connect(store => {
   return {
-    itemIDs: store.items.map(i => i.id)
+    items: store.items
   };
 })(FeedWithItems);
 

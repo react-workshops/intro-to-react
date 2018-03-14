@@ -1,6 +1,4 @@
-import store from "./store";
-
-const fetchImages = async () => {
+const fetchImages = async store => {
   try {
     let response = await fetch(
       "https://dog.ceo/api/breed/retriever/golden/images"

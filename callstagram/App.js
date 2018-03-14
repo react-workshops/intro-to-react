@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import Feed from "./Feed";
 import fetchImages from "./fetchImages";
 
@@ -9,17 +9,31 @@ import store from "./store";
 
 export default class App extends React.Component {
   componentDidMount() {
-    fetchImages();
+    fetchImages(store);
   }
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
+        <View
+          style={styles.container}
+          onLayout={e => {
+            store.dispatch({
+              type: "LAYOUT",
+              layout: e.nativeEvent.layout
+            });
+          }}
+        >
           <View style={styles.topBar}>
             <Image source={require("./callstack.png")} style={styles.logo} />
             <Text style={styles.title}>Callstagram</Text>
           </View>
-          <Feed />
+          <Feed
+            renderLikeButton={(title, onPress) => (
+              <TouchableOpacity onPress={onPress}>
+                <Text>{title}</Text>
+              </TouchableOpacity>
+            )}
+          />
         </View>
       </Provider>
     );
@@ -30,7 +44,8 @@ const styles = StyleSheet.create({
   title: { fontSize: 48 },
   container: {
     paddingTop: 20,
-    backgroundColor: "#fafafa"
+    backgroundColor: "#fafafa",
+    flex: 1
   },
   topBar: {
     alignItems: "center",

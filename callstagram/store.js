@@ -1,41 +1,59 @@
 import { createStore } from "redux";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const initialState = {
-  items: []
+  items: [],
+  likedItems: [],
+  layout: {}
 };
 
-const reducer = (lastState = initialState, action) => {
+const rootReducer = (lastState = initialState, action) => {
   if (action.type === "DOGGIE_DELIVERY") {
     return {
+      ...lastState,
       items: action.images
         .map(
           i =>
             i && {
-              isLiked: false,
               image: i,
-              id: i
+              key: i
             }
         )
         .filter(Boolean)
     };
   }
+  if (action.type === "LAYOUT") {
+    return {
+      ...lastState,
+      layout: action.layout
+    };
+  }
   if (action.type === "TOGGLE_LIKE") {
-    const items = [...lastState.items];
-    const index = items.findIndex(i => i.id === action.id);
-    if (index !== -1) {
-      const item = items[index];
-      items[index] = {
-        ...item,
-        isLiked: !item.isLiked
+    const hasLiked = lastState.likedItems.indexOf(action.id) !== -1;
+    if (hasLiked) {
+      return {
+        ...lastState,
+        likedItems: lastState.likedItems.filter(i => i.id === action.id)
+      };
+    } else {
+      return {
+        ...lastState,
+        likedItems: [...lastState.likedItems, action.id]
       };
     }
-    return {
-      items
-    };
   }
   return lastState;
 };
 
-const store = createStore(reducer);
+const persistConfig = {
+  key: "root",
+  storage
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = createStore(persistedReducer);
+
+const persistor = persistStore(store);
 
 export default store;

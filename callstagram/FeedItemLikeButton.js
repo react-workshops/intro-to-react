@@ -4,16 +4,22 @@ import { Button } from "react-native";
 
 import { connect } from "react-redux";
 
-const LikeButton = ({ id, isLiked, onToggle }) =>
-  id && <Button title={isLiked ? "Liked!" : "Like Me"} onPress={onToggle} />;
+class LikeButton extends React.Component {
+  static defaultProps = {
+    renderButton: (title, onPress) => <Button title={title} onPress={onPress} />
+  };
+  render() {
+    const { id, isLiked, onToggle, renderButton } = this.props;
+    return (
+      id && <Button title={isLiked ? "Liked!" : "Like Me"} onPress={onToggle} />
+    );
+  }
+}
 
 const FeedItemLikeButton = connect(
   (store, props) => {
-    const item = store.items.find(i => i.id === props.id);
-    if (!item) {
-      return { id: null };
-    }
-    return { isLiked: item.isLiked, id: item.id };
+    const isLiked = store.likedItems.indexOf(props.id) !== -1;
+    return { isLiked, id: props.id };
   },
   (dispatch, props) => ({
     onToggle: () => {
