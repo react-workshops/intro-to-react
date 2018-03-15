@@ -1,14 +1,10 @@
-import { createStore } from "redux";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-
 const initialState = {
   items: [],
   likedItems: [],
   layout: {}
 };
 
-const rootReducer = (lastState = initialState, action) => {
+const reducer = (lastState = initialState, action) => {
   if (action.type === "DOGGIE_DELIVERY") {
     return {
       ...lastState,
@@ -38,13 +34,4 @@ const rootReducer = (lastState = initialState, action) => {
   return lastState;
 };
 
-const persistConfig = {
-  key: `${Date.now()}`,
-  storage
-};
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-const store = createStore(persistedReducer);
-const persistor = persistStore(store);
-
-export { store, persistor };
+export default reducer;

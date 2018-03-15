@@ -12,7 +12,7 @@ import Feed from "./Feed";
 
 import { Provider } from "react-redux";
 
-import { store, persistor } from "./store";
+import { store, persistor } from "./configureStore";
 import { PersistGate } from "redux-persist/integration/react";
 
 import { StackNavigator, TabNavigator } from "react-navigation";

@@ -70,7 +70,6 @@ class FeedWithItems extends React.PureComponent {
         }}
         onEndReached={this._onEndReached}
         renderItem={({ item }) => {
-          debugger;
           return (
             <FeedItem
               id={item.key}
