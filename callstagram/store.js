@@ -10,17 +10,18 @@ const initialState = {
 
 const rootReducer = (lastState = initialState, action) => {
   if (action.type === "DOGGIE_DELIVERY") {
+    const newItems = action.images
+      .map(
+        i =>
+          i && {
+            image: i,
+            key: i
+          }
+      )
+      .filter(Boolean);
     return {
       ...lastState,
-      items: action.images
-        .map(
-          i =>
-            i && {
-              image: i,
-              key: i
-            }
-        )
-        .filter(Boolean)
+      items: [...lastState.items, ...newItems]
     };
   }
   if (action.type === "LAYOUT") {
@@ -47,13 +48,12 @@ const rootReducer = (lastState = initialState, action) => {
 };
 
 const persistConfig = {
-  key: "root",
+  key: "root1",
   storage
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(persistedReducer);
-
 const persistor = persistStore(store);
 
-export default store;
+export { store, persistor };

@@ -9,11 +9,11 @@ import {
   Button
 } from "react-native";
 import Feed from "./Feed";
-import fetchImages from "./fetchImages";
 
 import { Provider } from "react-redux";
 
-import store from "./store";
+import { store, persistor } from "./store";
+import { PersistGate } from "redux-persist/integration/react";
 
 import { StackNavigator, TabNavigator } from "react-navigation";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -66,7 +66,6 @@ class LikedScreen extends React.Component {
         <Feed
           getItemsFromStore={store => {
             return store.likedItems.map(likedItemKey => {
-              console.log("getting an item from the store", likedItemKey);
               return store.items.find(i => i.key === likedItemKey);
             });
           }}
@@ -126,13 +125,12 @@ const AppNavigator = TabNavigator({
 });
 
 export default class App extends React.Component {
-  componentDidMount() {
-    fetchImages(store);
-  }
   render() {
     return (
       <Provider store={store}>
-        <AppNavigator />
+        <PersistGate loading={null} persistor={persistor}>
+          <AppNavigator />
+        </PersistGate>
       </Provider>
     );
   }
