@@ -5,25 +5,51 @@ import { connect } from "react-redux";
 
 import FeedItemLikeButton from "./FeedItemLikeButton";
 
-const FeedItemFull = ({ id, image, layout, renderLikeButton, navigation }) => {
-  return (
-    id && (
-      <View style={{}}>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            navigation.navigate("Photo", { id });
-          }}
-        >
-          <Image
-            style={{ width: layout.width / 2, aspectRatio: 1 }}
-            source={{ uri: image }}
-          />
-        </TouchableWithoutFeedback>
-        <FeedItemLikeButton id={id} renderButton={renderLikeButton} />
-      </View>
-    )
-  );
-};
+class FeedItemFull extends React.PureComponent {
+  render() {
+    const { id, image, layout, renderLikeButton, navigation } = this.props;
+    console.log("Rendering ", FeedItemFull);
+    return (
+      id && (
+        <View style={{}}>
+          <TouchableWithoutFeedback
+            onPress={() => {
+              navigation.navigate("Photo", { id });
+            }}
+          >
+            <Image
+              style={{ width: layout.width / 2, aspectRatio: 1 }}
+              source={{ uri: image }}
+            />
+          </TouchableWithoutFeedback>
+          <FeedItemLikeButton id={id} renderButton={renderLikeButton} />
+        </View>
+      )
+    );
+  }
+}
+
+// const FeedItemFull = props => {
+//   const { id, image, layout, renderLikeButton, navigation } = props;
+//   console.log("Rendering ", FeedItemFull);
+//   return (
+//     id && (
+//       <View style={{}}>
+//         <TouchableWithoutFeedback
+//           onPress={() => {
+//             navigation.navigate("Photo", { id });
+//           }}
+//         >
+//           <Image
+//             style={{ width: layout.width / 2, aspectRatio: 1 }}
+//             source={{ uri: image }}
+//           />
+//         </TouchableWithoutFeedback>
+//         <FeedItemLikeButton id={id} renderButton={renderLikeButton} />
+//       </View>
+//     )
+//   );
+// };
 
 const FeedItem = connect((store, props) => {
   const item = store.items.find(i => i.key === props.id);

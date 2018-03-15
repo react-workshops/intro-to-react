@@ -10,18 +10,9 @@ const initialState = {
 
 const rootReducer = (lastState = initialState, action) => {
   if (action.type === "DOGGIE_DELIVERY") {
-    const newItems = action.images
-      .map(
-        i =>
-          i && {
-            image: i,
-            key: i
-          }
-      )
-      .filter(Boolean);
     return {
       ...lastState,
-      items: [...lastState.items, ...newItems]
+      items: [...lastState.items, ...action.images]
     };
   }
   if (action.type === "LAYOUT") {
@@ -48,7 +39,7 @@ const rootReducer = (lastState = initialState, action) => {
 };
 
 const persistConfig = {
-  key: "root1",
+  key: `${Date.now()}`,
   storage
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);

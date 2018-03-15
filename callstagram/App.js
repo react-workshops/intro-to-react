@@ -20,6 +20,10 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 import PhotoScreen from "./PhotoScreen";
 
+store.subscribe(() => {
+  console.log("Store has changed: ", store.getState());
+});
+
 class HomeScreen extends React.Component {
   static navigationOptions = {
     title: "Callstagram"
