@@ -1,5 +1,7 @@
 let i = 0;
 
+import createKey from "./createKey";
+
 const fetchImages = async store => {
   let response = await fetch(
     "https://dog.ceo/api/breed/retriever/golden/images"
@@ -7,7 +9,7 @@ const fetchImages = async store => {
   let responseJson = await response.json();
   const images = responseJson.message;
   return images.map(image => ({
-    key: `ID-${Date.now()}-${i++}`,
+    key: createKey(),
     image
   }));
 };

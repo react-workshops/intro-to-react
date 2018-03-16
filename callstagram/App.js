@@ -16,9 +16,14 @@ import { store, persistor } from "./configureStore";
 import { PersistGate } from "redux-persist/integration/react";
 
 import { StackNavigator, TabNavigator } from "react-navigation";
-import Ionicons from "react-native-vector-icons/Ionicons";
 
 import PhotoScreen from "./PhotoScreen";
+
+const Ionicons = ({ name, size, color }) => (
+  <Text>
+    Name: {name} Size: {size}: Color: {color}
+  </Text>
+);
 
 store.subscribe(() => {
   console.log("Store has changed: ", store.getState());
@@ -31,6 +36,7 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View
+        testID="HomeScreen"
         style={styles.container}
         onLayout={e => {
           store.dispatch({

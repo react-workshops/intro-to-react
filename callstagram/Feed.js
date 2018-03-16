@@ -8,7 +8,7 @@ import { ScrollView, FlatList, Dimensions, Text, View } from "react-native";
 
 // const { width, height } = Dimensions.get("window");
 
-const MIN_LENGTH = 150;
+const MIN_LENGTH = 1;
 
 class FeedWithItems extends React.PureComponent {
   state = { error: null };
@@ -42,11 +42,10 @@ class FeedWithItems extends React.PureComponent {
   render() {
     const { items, renderLikeButton } = this.props;
     const { error } = this.state;
-    console.log("Expensive render!!", items.length);
     if (this.props.items.length < MIN_LENGTH) {
       return (
         <View style={{}}>
-          <Text style={{ textAlign: "center", fontSize: 24 }}>Loading...</Text>
+          <Text style={{ textAlign: "center", fontSize: 24 }}>Loading..</Text>
         </View>
       );
     }
