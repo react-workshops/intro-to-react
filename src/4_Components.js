@@ -1,5 +1,6 @@
 import React from "react";
 import ScrollScreen from "./components/ScrollScreen";
+import Card from "./components/Card";
 
 import { Text } from "react-native";
 
